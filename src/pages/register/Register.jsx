@@ -7,14 +7,15 @@ export default function Register() {
   const username = useRef();
   const email = useRef();
   const password = useRef();
+  const NL = process.env.SERVER_LINK;
   const passwordAgain = useRef();
   const history = useHistory();
-const login =()=>{
-  history.push("/login");
-}
-const signup = () => {
-  history.push("/register");
-};
+  const login = () => {
+    history.push("/login");
+  };
+  const signup = () => {
+    history.push("/register");
+  };
   const handleClick = async (e) => {
     e.preventDefault();
     if (passwordAgain.current.value !== password.current.value) {
@@ -26,7 +27,7 @@ const signup = () => {
         password: password.current.value,
       };
       try {
-        await axios.post("/auth/register", user);
+        await axios.post(NL + "api/auth/register", user);
         history.push("/login");
       } catch (err) {
         console.log(err);
